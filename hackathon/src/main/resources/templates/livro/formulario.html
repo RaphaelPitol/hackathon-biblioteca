@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:insert="~{index :: head}">
+    <meta charset="UTF-8">
+</head>
+<body class="meubody">
+<header th:replace="~{index :: header}"></header>
+<div class="app-wrapper">
+    <div class="app-content pt-3 p-md-3 p-lg-4">
+        <div class="container-xl">
+
+            <hr class="mb-4">
+            <div class="row g-4 settings-section">
+
+                <div class="col-12 col-md-4">
+
+                    <h1 class="section-title"><span th:text="${boasVindas}"></span></h1>
+                    <hr>
+
+                </div>
+                <div class="col-12 col-md-8">
+                    <div class="app-card app-card-settings shadow-sm p-4">
+
+                        <div class="app-card-body">
+                            <form class="settings-form">
+                                <div class="mb-3">
+                                    <input name="id" th:value="${livro.id}" type="text" hidden="true">
+
+                                    <label class="form-label">Titulo</label>
+                                    <input name="titulo" th:value="${livro.titulo}" type="text" required
+                                           class="form-control">
+
+                                    <label class="form-label">Sub Titulo</label>
+                                    <input name="subTitulo" th:value="${livro.subTitulo}" required type="text"
+                                           class="form-control">
+
+                                    <label class="form-label">ISBN</label>
+                                    <input name="isbn" th:value="${livro.isbn}" required type="text"
+                                           class="form-control">
+
+                                    <label class="form-label">Autor</label>
+                                    <select th:field="*{livro.autor.id}" class="form-control" required>
+                                        <option value="" selected="selected">Selecione...</option>
+                                        <option th:each="autor : ${ListaDeAutores}" th:value="${autor.id}"
+                                                th:text="${autor.nome}"></option>
+                                    </select>
+
+                                    <label class="form-label">Editora</label>
+                                    <select th:field="*{livro.editora.id}" class="form-control" required>
+                                        <option value="" selected="selected">Selecione...</option>
+                                        <option th:each="editora : ${ListaDeEditoras}" th:value="${editora.id}"
+                                                th:text="${editora.nome}"></option>
+                                    </select>
+
+                                    <label class="form-label">Categoria</label>
+                                    <select th:field="*{livro.categoria.id}" class="form-control" required>
+                                        <option value="" selected="selected">Selecione...</option>
+                                        <option th:each="categoria : ${ListaDeCategoria}" th:value="${categoria.id}"
+                                                th:text="${categoria.nome}"></option>
+                                    </select>
+
+                                    <label class="form-label">Local</label>
+                                    <input name="local" th:value="${livro.local}" type="text" required
+                                           class="form-control">
+
+                                    <label class="form-label">Ano</label>
+                                    <input name="ano" th:value="${livro.ano}" type="number" required class="form-control">
+
+                                    <label class="form-label">Capa</label>
+                                    <input name="imagem" th:value="${livro.imagem}" type="text" required class="form-control">
+
+                                    <label class="form-label">Detalhes</label>
+                                    <input name="detalhe" th:value="${livro.detalhe}" type="text" class="form-control" required >
+
+
+                                </div>
+
+                                <button th:formaction="@{/livro/salvar}" formmethod="post" type="submit"
+                                        class="bb">Salvar
+                                </button>
+
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe"
+        crossorigin="anonymous"></script>
+
+</body>
+</html>

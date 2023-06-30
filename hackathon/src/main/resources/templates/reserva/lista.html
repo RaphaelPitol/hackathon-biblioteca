@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:insert="~{index :: head}">
+    <meta charset="UTF-8">
+</head>
+<body>
+<header th:replace="~{index :: header}"></header>
+<div class="app-wrapper">
+    <div class="app-content pt-3 p-md-3 p-lg-4">
+        <div class="container-xl">
+            <hr>
+            <br>
+
+            <h1><span th:text="${boasVindas}"></span></h1>
+            <hr>
+            <div>
+                <table class="table">
+                    <thead>
+                    <tr>
+                        <th scope="col">Aluno</th>
+                        <th scope="col">Livro</th>
+                        <th scope="col">Data Inicio</th>
+                        <th scope="col">Data Final</th>
+                        <th scope="col">Observação</th>
+                        <th scope="col">Opções</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr th:each="reserva : ${ListaDeReservas}">
+                        <th th:text="${reserva.aluno.nome}"></th>
+                        <td th:text="${reserva.livro.titulo}"></td>
+                        <td th:text="${reserva.dataInicio}"></td>
+                        <td th:text="${reserva.dataFim}"></td>
+                        <td th:text="${reserva.observacao}"></td>
+                        <td>
+
+                            <a th:href="@{'/reserva/alterar/' + ${reserva.id}}" type="button" class="btn btn-warning">Alterar</a>
+                            <a th:href="@{'/reserva/remover/' + ${reserva.id}}" type="button" class="btn btn-danger">Remover</a>
+
+
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+<div th:insert="~{index :: scripts}"></div>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe"
+        crossorigin="anonymous"></script>
+
+</body>
+</html>
